@@ -15,8 +15,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
+    "matplotlib",
     "pandas",
-    "geopandas"
+    "geopandas",
+    "scipy"
 ]
 requires-python = ">=3.10"
 
@@ -32,6 +34,9 @@ dev = [
 
 [tool.setuptools.package-data]
 ECOv002_calval_tables = ["*.csv"]
+
+[tool.setuptools.packages.find]
+include = ["ECOv002_calval_tables"]
 
 [project.urls]
 "Homepage" = "https://github.com/gregory-halverson/ECOv002-calval-tables"
