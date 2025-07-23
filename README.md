@@ -1,5 +1,5 @@
 
-# ECOSTRESS Collection 2 Calibration/Validation Data Tables (Python Package)
+# ECOSTRESS Collection 2 Calibration/Validation Data Tables
 
 This Python package provides calibration and validation data tables used in the evaluation of the ECOSTRESS Collection 2 Evapotranspiration (ET) data products. The included datasets and loader functions support reproducible research and validation workflows for ET modeling and remote sensing studies.
 
