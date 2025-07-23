@@ -3,7 +3,7 @@
 
 This Python package provides calibration and validation data tables used in the evaluation of the ECOSTRESS Collection 2 Evapotranspiration (ET) data products. The included datasets and loader functions support reproducible research and validation workflows for ET modeling and remote sensing studies.
 
-> The CSV files used in this repository were sourced from the [@zoepierrat/ECOSTRESS_C2_L3_ET_Validation](https://github.com/zoepierrat/ECOSTRESS_C2_L3_ET_Validation) repository.
+The CSV files used in this repository were sourced from the [@zoepierrat/ECOSTRESS_C2_L3_ET_Validation](https://github.com/zoepierrat/ECOSTRESS_C2_L3_ET_Validation) repository.
 
 ## Authors
 
