@@ -58,6 +58,7 @@ def load_calval_table() -> gpd.GeoDataFrame:
     merged_df["ST_K"] = np.array(merged_df.LST)
     merged_df["ST_C"] = merged_df.ST_K - 273.15
     merged_df["Ta_C"] = np.array(merged_df.Ta)
+    merged_df["SWin_Wm2"] = np.array(merged_df.Rg)
 
     # Convert merged DataFrame to GeoDataFrame
     gdf = gpd.GeoDataFrame(merged_df, geometry=merged_df["geometry"], crs="EPSG:4326")
