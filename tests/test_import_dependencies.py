@@ -3,7 +3,13 @@ import pytest
 # List of dependencies
 dependencies = [
     "pandas",
-    "geopandas"
+    "geopandas",
+    "numpy",
+    "tables",
+    "scikit-learn",
+    "scipy",
+    "matplotlib",
+    "shapely"
 ]
 
 # Generate individual test functions for each dependency
