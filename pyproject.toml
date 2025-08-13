@@ -16,7 +16,13 @@ classifiers = [
 ]
 dependencies = [
     "pandas",
-    "geopandas"
+    "geopandas",
+    "numpy",
+    "tables",
+    "scikit-learn",
+    "scipy",
+    "matplotlib",
+    "shapely"
 ]
 requires-python = ">=3.10"
 
