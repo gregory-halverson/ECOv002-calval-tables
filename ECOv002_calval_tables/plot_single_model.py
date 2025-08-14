@@ -3,20 +3,28 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.lines as mlines
 import os
+import pandas as pd
+from typing import Optional
 from . import error_funcs
 
-def quick_look_plot_single_model(big_df_ss, time, model_col, model_name, LE_var='LEcorr50'):
+def quick_look_plot_single_model(
+    big_df_ss: pd.DataFrame,
+    time: str,
+    model_col: str,
+    model_name: str,
+    LE_var: str = 'LEcorr50',
+    output_filename: Optional[str] = None
+) -> None:
     """
     Plots the results for a single model against flux tower LE.
     Parameters:
-        big_df_ss: DataFrame containing all data
+        big_df_ss: pd.DataFrame containing all data
         time: string for output file naming
         model_col: column name for model output
         model_name: display name for the model
         LE_var: column name for flux tower LE (default 'LEcorr50')
+        output_filename: Optional path for output figure file. If None, figure is not saved.
     """
-    rel_path = os.getcwd()+'/'
-    fig_path = rel_path+'/results/figures/'
     colors = {
         'CRO': '#FFEC8B', 'CSH': '#AB82FF', 'CVM': '#8B814C', 
         'DBF': '#98FB98', 'EBF': '#7FFF00', 'ENF': '#006400', 
@@ -40,7 +48,7 @@ def quick_look_plot_single_model(big_df_ss, time, model_col, model_name, LE_var=
     number_of_points = np.sum(~np.isnan(y) & ~np.isnan(x))
     fig, ax = plt.subplots(figsize=(6, 6))
     if err is not None and xerr is not None:
-        ax.errorbar(x, y, yerr=err, xerr=xerr, fmt='', ecolor='lightgray')
+        ax.errorbar(x, y, yerr=err, xerr=xerr, fmt='none', ecolor='lightgray')
     ax.scatter(x, y, c=scatter_colors, marker='o', s=6, zorder=4)
     ax.plot(one2one, one2one, '--', c='k')
     ax.plot(one2one, one2one * slope + intercept, '--', c='gray')
@@ -53,6 +61,9 @@ def quick_look_plot_single_model(big_df_ss, time, model_col, model_name, LE_var=
     ax.text(500, -200, f'y = {slope:.1f}x + {intercept:.1f} \nRMSE: {rmse:.1f} Wm$^-$² \nbias: {bias:.1f} Wm$^-$² \nR$^2$: {r2:.2f}', fontsize=12)
     scatter_handles = [mlines.Line2D([], [], color=color, marker='o', linestyle='None', markersize=6, label=veg) for veg, color in colors.items()]
     fig.legend(handles=scatter_handles, loc='lower center', bbox_to_anchor=(0.5, -0.05), ncol=7, title='Vegetation Type',fontsize=10)
+    fig.subplots_adjust(bottom=0.2)
     fig.tight_layout()
-    fig.savefig(f'{fig_path}/le_fluxes/le_eval_{model_col}_{time}_single.png', dpi=600,bbox_inches='tight')
-    plt.close(fig)
+    if output_filename is not None:
+        fig.savefig(output_filename, dpi=600, bbox_inches='tight')
+    # Return the figure object for notebook display
+    return fig
