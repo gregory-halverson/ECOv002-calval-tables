@@ -18,30 +18,10 @@ def filter_nan(s,o):
     mask = ~np.isnan(o)
     return s[mask], o[mask]
 
-#-------------------------------------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------------------------------------
-
-# def R2_fun(s,o):
-    """
-    
-#     o=np.array(o)
-#     s=np.array(s)
-    
-#     if ((o == o[0]).all())|((s == s[0]).all()):
-#         r2_o_d_=np.nan
-#     else:
-#         m_o_d = no_nans(np.array(o),np.array(s))
-#         if len(np.array(o)[m_o_d])==0 | len(np.array(s)[m_o_d])==0:
-#             r2_o_d_ = np.nan
-#         else:
-#             stats_o_d = stats.linregress(np.array(o)[m_o_d],np.array(s)[m_o_d])
-#             # slope_o_d = stats_o_d[0]; 
-#             # int_o_d = stats_o_d[1]; 
-#             r2_o_d_ = stats_o_d[2]**2
-    
-#     return r2_o_d_
 def R2_fun(s, o):
-    """Calculates R^2 (coefficient of determination) or correlation coefficient squared."""
+    """
+    Calculates R^2 (coefficient of determination) or correlation coefficient squared.
+    """
     o = np.array(o)
     s = np.array(s)
     if np.all(o == o[0]) or np.all(s == s[0]):
@@ -78,11 +58,11 @@ def lin_regress(Y, X):
 def BIAS_fun(s, o):
     """
     Returns the mean bias of the simulated data in relation to the observations.
-
+    
     Parameters:
         s (array-like): simulated values
         o (array-like): observed values
-
+    
     Returns:
         float: bias
     """
@@ -149,7 +129,8 @@ def create_sum_stats(in_df,LE_var='LEcorr50'):
     """
     creates a table of statistics for models and ancillary variables
     params:
-        in_df = dataframe including models and ground observations
+    in_df = dataframe including models and ground observations
+    """
     import pandas as pd
     stats_df = pd.DataFrame(columns=['VAR','RMSE','MAB','BIAS','R2','Slope','Int'])
     # SM surf
@@ -231,16 +212,18 @@ def create_sum_stats(in_df,LE_var='LEcorr50'):
     stats_df.loc[len(stats_df.index)] = [model, m_rmse, m_mab, m_bias, m_r2, m_slope, m_int]
 
     return stats_df
-  m_mab = ABS_BIAS_fun(in_df[model].to_numpy(),in_df[obsname].to_numpy())
-  m_bias = BIAS_fun(in_df[model].to_numpy(),in_df[obsname].to_numpy())
-  m_r2 = R2_fun(in_df[model].to_numpy(),in_df[obsname].to_numpy())
-  m_slope,m_int = lin_regress(in_df[model].to_numpy(),in_df[obsname].to_numpy())
-  stats_df.loc[len(stats_df.index)] = [model+'rz',m_rmse, m_mab, m_bias, m_r2, m_slope, m_int]
+    m_mab = ABS_BIAS_fun(in_df[model].to_numpy(),in_df[obsname].to_numpy())
+    m_bias = BIAS_fun(in_df[model].to_numpy(),in_df[obsname].to_numpy())
+    m_r2 = R2_fun(in_df[model].to_numpy(),in_df[obsname].to_numpy())
+    m_slope,m_int = lin_regress(in_df[model].to_numpy(),in_df[obsname].to_numpy())
+    stats_df.loc[len(stats_df.index)] = [model+'rz',m_rmse, m_mab, m_bias, m_r2, m_slope, m_int]
 
-  return stats_df
+    return stats_df
 
 def create_sum_stats_daily(in_df,LE_var='ETcorr50daily'):
-    """Creates a table of statistics for models and ancillary variables."""
+    """
+    Creates a table of statistics for models and ancillary variables.
+    """
     stats_df = pd.DataFrame(columns=['VAR','RMSE','MAB','BIAS','R2','Slope','Int'])
     model = 'ETdaily_L3T_JET'
     jet_rmse = rmse(in_df[model].to_numpy(),in_df[LE_var].to_numpy())

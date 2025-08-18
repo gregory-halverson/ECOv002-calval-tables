@@ -6,7 +6,7 @@ dependencies = [
     "geopandas",
     "numpy",
     "tables",
-    "scikit-learn",
+    "sklearn",
     "scipy",
     "matplotlib",
     "shapely"

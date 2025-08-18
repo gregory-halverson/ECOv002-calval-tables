@@ -39,5 +39,8 @@ dev = [
 [tool.setuptools.package-data]
 ECOv002_calval_tables = ["*.csv"]
 
+[tool.setuptools.packages.find]
+exclude = ["notebooks*"]
+
 [project.urls]
 "Homepage" = "https://github.com/gregory-halverson/ECOv002-calval-tables"

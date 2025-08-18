@@ -1,8 +1,3 @@
-warnings.filterwarnings(action='ignore', category=NaturalNameWarning)
-warnings.simplefilter(action="ignore", category=RuntimeWarning)
-warnings.filterwarnings(action='ignore', message='All-NaN slice encountered') 
-pd.options.mode.chained_assignment = None
-data_path = rel_path+'data/AMF_metadata/'
 import numpy as np
 import os
 import pandas as pd
