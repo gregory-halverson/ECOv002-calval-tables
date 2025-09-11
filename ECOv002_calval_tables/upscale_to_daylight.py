@@ -1,4 +1,5 @@
 import pandas as pd
+from daylight_evapotranspiration import daylight_ET_from_instantaneous_LE
 
 def upscale_to_daylight(df: pd.DataFrame, prefix: str = "insitu_") -> pd.DataFrame:
     daylight_results = daylight_ET_from_instantaneous_LE(
