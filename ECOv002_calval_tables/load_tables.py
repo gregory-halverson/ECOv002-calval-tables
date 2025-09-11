@@ -6,6 +6,8 @@ import geopandas as gpd
 
 from shapely.geometry import Point
 
+from .upscale_to_daylight import upscale_to_daylight
+
 def load_combined_eco_flux_ec_filtered() -> pd.DataFrame:
     """
     Load the filtered eddy covariance (EC) flux dataset used for ECOSTRESS Collection 2 ET product validation.
@@ -64,4 +66,6 @@ def load_calval_table() -> gpd.GeoDataFrame:
     # Convert merged DataFrame to GeoDataFrame
     gdf = gpd.GeoDataFrame(merged_df, geometry=merged_df["geometry"], crs="EPSG:4326")
     
+    gdf = upscale_to_daylight(gdf)
+
     return gdf
