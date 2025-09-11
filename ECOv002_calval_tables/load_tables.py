@@ -63,9 +63,9 @@ def load_calval_table() -> gpd.GeoDataFrame:
     merged_df["SWin_Wm2"] = np.array(merged_df.Rg)
     merged_df["emissivity"] = np.array(merged_df.EmisWB)
 
-    merged_df = upscale_to_daylight(merged_df)
-
     # Convert merged DataFrame to GeoDataFrame
     gdf = gpd.GeoDataFrame(merged_df, geometry=merged_df["geometry"], crs="EPSG:4326")
     
+    gdf = upscale_to_daylight(gdf)
+
     return gdf
