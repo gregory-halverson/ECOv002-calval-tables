@@ -5,7 +5,6 @@ dependencies = [
     "pandas",
     "geopandas",
     "numpy",
-    "tables",
     "sklearn",
     "scipy",
     "matplotlib",
