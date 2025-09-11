@@ -15,6 +15,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
+    "daylight-evapotranspiration>=v1.3.4",
     "pandas",
     "geopandas",
     "numpy",
