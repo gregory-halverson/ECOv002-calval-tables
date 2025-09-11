@@ -109,5 +109,6 @@ def quick_look_plot_single_model(
     fig.legend(handles=scatter_handles, loc='lower center', bbox_to_anchor=(0.5, -0.05), ncol=7, title='Vegetation Type',fontsize=10)
     # Adjust layout for better appearance
     fig.tight_layout()
-    # Return the figure object for display in Jupyter notebooks
+    # Prevent automatic display in Jupyter by closing the figure before returning
+    plt.close(fig)
     return fig

@@ -15,6 +15,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
+    "daylight-evapotranspiration>=v1.3.4",
     "pandas",
     "geopandas",
     "numpy",
@@ -38,6 +39,9 @@ dev = [
 
 [tool.setuptools.package-data]
 ECOv002_calval_tables = ["*.csv"]
+
+[tool.setuptools.packages.find]
+exclude = ["notebooks*"]
 
 [project.urls]
 "Homepage" = "https://github.com/gregory-halverson/ECOv002-calval-tables"
