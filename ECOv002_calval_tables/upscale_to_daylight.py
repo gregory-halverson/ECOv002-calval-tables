@@ -1,3 +1,5 @@
+import pandas as pd
+
 def upscale_to_daylight(df: pd.DataFrame, prefix: str = "insitu_") -> pd.DataFrame:
     daylight_results = daylight_ET_from_instantaneous_LE(
         LE_instantaneous_Wm2=df.LEcorr50,
