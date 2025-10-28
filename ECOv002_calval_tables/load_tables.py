@@ -32,6 +32,7 @@ def load_metadata_ebc_filt() -> gpd.GeoDataFrame:
     
     geometry = [Point(xy) for xy in zip(df['Long'], df['Lat'])]
     gdf = gpd.GeoDataFrame(df, geometry=geometry, crs="EPSG:4326")
+    gdf["elevation_m"] = gdf["Elev"]
 
     return gdf
 
