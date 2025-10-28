@@ -3,9 +3,9 @@ from daylight_evapotranspiration import daylight_ET_from_instantaneous_LE
 
 def upscale_to_daylight(df: pd.DataFrame, prefix: str = "insitu_") -> pd.DataFrame:
     daylight_results = daylight_ET_from_instantaneous_LE(
-        LE_instantaneous_Wm2=df.LEcorr50,
-        Rn_instantaneous_Wm2=df.NETRAD_filt,
-        G_instantaneous_Wm2=df.G_filt,
+        LE_instantaneous_Wm2=df.insitu_LE_Wm2,
+        Rn_instantaneous_Wm2=df.insitu_Rn_Wm2,
+        G_instantaneous_Wm2=df.insitu_G_Wm2,
         time_UTC=df.time_UTC,
         geometry=df.geometry
     )

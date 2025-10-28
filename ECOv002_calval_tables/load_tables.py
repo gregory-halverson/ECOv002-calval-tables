@@ -32,6 +32,7 @@ def load_metadata_ebc_filt() -> gpd.GeoDataFrame:
     
     geometry = [Point(xy) for xy in zip(df['Long'], df['Lat'])]
     gdf = gpd.GeoDataFrame(df, geometry=geometry, crs="EPSG:4326")
+    gdf["elevation_m"] = gdf["Elev"]
 
     return gdf
 
@@ -58,10 +59,16 @@ def load_calval_table() -> gpd.GeoDataFrame:
 
     merged_df["time_UTC"] = merged_df["eco_time_utc"]
     merged_df["ST_K"] = np.array(merged_df.LST)
-    merged_df["ST_C"] = merged_df.ST_K - 273.15
+    merged_df["ST_C"] = np.array(merged_df.ST_K - 273.15)
     merged_df["Ta_C"] = np.array(merged_df.Ta)
     merged_df["SWin_Wm2"] = np.array(merged_df.Rg)
     merged_df["emissivity"] = np.array(merged_df.EmisWB)
+
+    merged_df["insitu_LE_Wm2"] = np.array(merged_df.LEcorr50)
+    merged_df["insitu_H_Wm2"] = np.array(merged_df.Hcorr50)
+    merged_df["insitu_Rn_Wm2"] = np.array(merged_df.NETRAD_filt)
+    merged_df["insitu_G_Wm2"] = np.array(merged_df.G_filt)
+    merged_df["insitu_SWin_Wm2"] = np.array(merged_df.SW_IN)   
 
     # Convert merged DataFrame to GeoDataFrame
     gdf = gpd.GeoDataFrame(merged_df, geometry=merged_df["geometry"], crs="EPSG:4326")
