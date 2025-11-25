@@ -1,3 +1,4 @@
 from .ECOv002_calval_tables import *
+from .version import __version__
 
-__version__ = "1.0.0"
+__author__ = "Gregory H. Halverson, Zoe Pierrat"

@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "ECOv002-calval-tables"
-version = "1.10.0"
+version = "1.11.0"
 description = "Priestley-Taylor Jet Propulsion Laboratory Soil Moisutre Evapotranspiration Model"
 readme = "README.md"
 authors = [
