@@ -76,3 +76,14 @@ def load_calval_table() -> gpd.GeoDataFrame:
     gdf = upscale_to_daylight(gdf)
 
     return gdf
+
+def load_times_locations() -> gpd.GeoDataFrame:
+    """
+    Load a GeoDataFrame containing the times and locations of the ECOSTRESS Collection 2 validation dataset.
+    
+    Returns:
+        gpd.GeoDataFrame: GeoDataFrame with time and location information for validation analysis.
+    """
+    calval_gdf = load_calval_table()
+    times_locations_gdf = calval_gdf[["ID", "time_UTC", "geometry"]].copy()
+    return times_locations_gdf
